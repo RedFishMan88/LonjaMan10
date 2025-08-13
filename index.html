@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weight & Fasting Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<header>
+  <h1>Weight & Fasting Tracker</h1>
+  <p>Install this app to your Home Screen for offline use & quick logging.</p>
+  <button id="installBtn" class="btn">Install App</button>
+</header>
+
+<section class="card">
+  <h2>Profile & Targets</h2>
+  <div class="grid two">
+    <label>Start Date
+      <input type="date" id="startDate" value="2025-08-13">
+    </label>
+    <label>End Date
+      <input type="date" id="endDate" value="2026-02-07">
+    </label>
+    <label>Start Weight (lbs)
+      <input type="number" id="startWeight" value="255" step="0.1">
+    </label>
+    <label>Goal Weight (lbs)
+      <input type="number" id="goalWeight" value="200" step="0.1">
+    </label>
+  </div>
+  <div class="grid two">
+    <button class="btn" id="recalcTargets">Recalculate Targets</button>
+    <span id="paceInfo"></span>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Today’s Log</h2>
+  <div class="grid two">
+    <label>Date
+      <input type="date" id="logDate">
+    </label>
+    <label>Morning Weight (lbs)
+      <input type="number" id="logWeight" step="0.1" placeholder="e.g., 252.6">
+    </label>
+    <label>Lunch (from plan)
+      <input type="text" id="logLunch" placeholder="Copy from plan or type your meal">
+    </label>
+    <label>Dinner (from plan)
+      <input type="text" id="logDinner" placeholder="Copy from plan or type your meal">
+    </label>
+    <label>Workout Done?
+      <select id="logWorkout">
+        <option value="">-- select --</option>
+        <option>Crunch Gym</option>
+        <option>At-Home</option>
+        <option>Rest</option>
+      </select>
+    </label>
+    <label>Fasting Start
+      <input type="time" id="fastStart">
+    </label>
+    <label>Fasting End
+      <input type="time" id="fastEnd">
+    </label>
+    <label>Notes
+      <input type="text" id="logNotes" placeholder="How you felt, BG notes, etc.">
+    </label>
+  </div>
+  <div class="grid two">
+    <button class="btn" id="saveLog">Save Today</button>
+    <button class="btn outline" id="remindBtn">Enable Reminders</button>
+  </div>
+  <small>Tip: Tap the calendar icon next to “Add to Home Screen” in Safari to install.</small>
+</section>
+
+<section class="card">
+  <h2>Progress</h2>
+  <div class="grid two">
+    <div>
+      <canvas id="weightChart" height="200"></canvas>
+    </div>
+    <div>
+      <canvas id="workoutChart" height="200"></canvas>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Data</h2>
+  <div class="grid two">
+    <button class="btn" id="exportData">Export CSV</button>
+    <input type="file" id="importData" accept=".json">
+  </div>
+  <div class="tablewrap">
+    <table id="logTable">
+      <thead>
+        <tr>
+          <th>Date</th><th>Weight</th><th>Target</th><th>Δ</th><th>Lunch</th><th>Dinner</th><th>Workout</th><th>Fast</th><th>Notes</th><th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <a href="README.html" target="_blank">Setup & Notifications Guide</a>
+</footer>
+
+</body>
+</html>
